@@ -1,49 +1,94 @@
-const db = require('../model/db');
+// const db = require('../model/db');
 const createError = require('http-errors');
+const User = require('../model/userSchema');
 
 
-// GET to see all the products on the shop
-exports.getUsers = (req, res, next) => {
-    const users = db.get('users').value();
-    res.json({ success: true, users: users })
+// GET to see all the users on the shop
+exports.getUsers = async (req, res, next) => {
+
+    try {
+        const users = await User.find()
+        res.json({ success: true, users: users })
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
 // GET just one user of the shop
-exports.getUser = (req, res, next) => {
-    const { name } = req.params;
-    const user = db.get('users').find({ name }).value();
+exports.getUser = async (req, res, next) => {
+    const { id } = req.params;
 
-    res.json({ success: true, user: user });
+    try {
+        const user = await User.findById(id)
+        if (!user) throw createError(404)
+        res.json({ success: true, user: user });
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
 // POST to update the shop with a new user
-exports.postUser = (req, res, next) => {
+exports.postUser = async (req, res, next) => {
     console.log(req.body);
 
-    db.get('users').push(req.body).last().write();
-
-    res.json({ success: true, user: req.body })
-    // res.json({ success: true, user: users })
-
+    try {
+        const user = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phone: req.body.phone,
+            address: req.body.address,
+            city: req.body.city,
+            country: req.body.country,
+            userName: req.body.userName,
+            email: req.body.email,
+            password: req.body.password
+        })
+        user.save()
+        res.json({ success: true, user: user })
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
-// PUT to update the specific user
-exports.putUser = (req, res, next) => {
-    const { name } = req.params;
+// PUT to update the specific user info
+exports.putUser = async (req, res, next) => {
+    // const { firstName } = req.params; I wanna use firstName to do the search 
+    const { id } = req.params;
 
-    const update = req.body;
-    console.log(update)
+    const user = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phone: req.body.phone,
+        address: req.body.address,
+        city: req.body.city,
+        country: req.body.country,
+        userName: req.body.userName,
+        email: req.body.email,
+        password: req.body.password
+    }
 
-    db.get('users').find({ name }).assign(update).write();
-
-    res.json({ success: true, user: update })
+    try {
+        await User.findByIdAndUpdate(id, user)
+        res.json({ success: true, user: user })
+    }
+    catch (err) {
+        next(err)
+    }
 };
 
 //DELETE one of the users of the shop
-exports.deleteUser = (req, res, next) => {
-    const { name } = req.params;
+exports.deleteUser = async (req, res, next) => {
+    const { id } = req.params;
 
-    const user = db.get('users').remove({ name }).write();
-
-    res.json({ success: true, user: user })
+    try {
+        const user = await User.findByIdAndDelete(id)
+        res.json({ success: true, user: user });
+        console.log(user)
+    }
+    catch (err) {
+        next(err)
+    }
 };
