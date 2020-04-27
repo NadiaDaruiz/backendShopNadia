@@ -20,7 +20,7 @@ exports.getUser = async (req, res, next) => {
     const { id } = req.params;
 
     try {
-        const user = await User.findById(id)
+        const user = await User.find(id)
         if (!user) throw createError(404)
         res.json({ success: true, user: user });
     }
@@ -34,17 +34,7 @@ exports.postUser = async (req, res, next) => {
     console.log(req.body);
 
     try {
-        const user = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            phone: req.body.phone,
-            address: req.body.address,
-            city: req.body.city,
-            country: req.body.country,
-            userName: req.body.userName,
-            email: req.body.email,
-            password: req.body.password
-        })
+        const user = new User(req.body)
         user.save()
         res.json({ success: true, user: user })
     }
@@ -55,24 +45,12 @@ exports.postUser = async (req, res, next) => {
 
 // PUT to update the specific user info
 exports.putUser = async (req, res, next) => {
-    // const { firstName } = req.params; I wanna use firstName to do the search 
     const { id } = req.params;
-
-    const user = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        phone: req.body.phone,
-        address: req.body.address,
-        city: req.body.city,
-        country: req.body.country,
-        userName: req.body.userName,
-        email: req.body.email,
-        password: req.body.password
-    }
+    const user = req.body;
 
     try {
-        await User.findByIdAndUpdate(id, user)
-        res.json({ success: true, user: user })
+        const updateUser = await User.findByIdAndUpdate(id, user, { new: true })
+        res.json({ success: true, user: updateUser })
     }
     catch (err) {
         next(err)
