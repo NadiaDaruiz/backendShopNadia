@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const createError = require('http-errors');
+const { setCors } = require('./middleware/chrome')
+
 
 
 // const db = require('./model/db');
@@ -15,6 +17,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(setCors)
 
 // Port
 const port = process.env.PORT || 4000;

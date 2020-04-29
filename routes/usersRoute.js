@@ -1,5 +1,5 @@
 const Route = require('express').Router();
-const { getUsers, getUser, postUser, putUser, deleteUser } = require('../controllers/usersController')
+const { getUsers, getUser, postUser, putUser, deleteUser, loginUser } = require('../controllers/usersController')
 const { validInputs } = require('../middleware/validation');
 
 
@@ -11,6 +11,7 @@ Route.get('/:id', getUser);
 
 // POST to update the shop with a new User
 Route.post('/', validInputs(), postUser);
+Route.post('/login', loginUser);
 
 // PUT to update the price of the specific User
 Route.put('/:id', validInputs(), putUser);

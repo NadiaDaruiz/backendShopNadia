@@ -4,8 +4,14 @@ const Product = require('../model/productSchema')
 // GET to see all the products on the shop
 exports.getProducts = async (req, res, next) => {
     try {
-        const products = await Product.find()
-        res.json({ success: true, products: products })
+        const value = req.header('test')
+        if (value === '123') {
+            const products = await Product.find()
+            res.json({ success: true, products: products })
+        }
+        else {
+            throw createError(404)
+        }
     }
     catch (err) {
         next(err)

@@ -1,4 +1,3 @@
-// const db = require('../model/db');
 const createError = require('http-errors');
 const User = require('../model/userSchema');
 
@@ -35,7 +34,7 @@ exports.postUser = async (req, res, next) => {
 
     try {
         const user = new User(req.body)
-        user.save()
+        await user.save()
         res.json({ success: true, user: user })
     }
     catch (err) {
@@ -50,6 +49,7 @@ exports.putUser = async (req, res, next) => {
 
     try {
         const updateUser = await User.findByIdAndUpdate(id, user, { new: true })
+        if (!updateUser) throw createError(404)
         res.json({ success: true, user: updateUser })
     }
     catch (err) {
@@ -63,8 +63,23 @@ exports.deleteUser = async (req, res, next) => {
 
     try {
         const user = await User.findByIdAndDelete(id)
+        if (!user) throw createError(500)
         res.json({ success: true, user: user });
         console.log(user)
+    }
+    catch (err) {
+        next(err)
+    }
+};
+
+exports.loginUser = async (req, res, next) => {
+
+    const { email, password } = req.body;
+    try {
+        const user = await User.findOne({ email, password })
+        if (!user) throw createError(404)
+        res.header('test', 123);
+        res.json({ success: true, user: user })
     }
     catch (err) {
         next(err)
