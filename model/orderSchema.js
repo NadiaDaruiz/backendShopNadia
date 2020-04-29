@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const OrderSchema = new Schema({
     createAt: { type: Date, default: Date.now },
-    product: { type: String, required: true },
+    product: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true }],
     qty: { type: Number, required: true },
 })
 

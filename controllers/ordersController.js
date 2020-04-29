@@ -5,7 +5,7 @@ const createError = require('http-errors');
 // GET to see all the products on the shop
 exports.getOrders = async (req, res, next) => {
     try {
-        const orders = await Order.find()
+        const orders = await Order.find().populate('product')
         res.json({ success: true, orders: orders })
     }
     catch (err) {
@@ -17,7 +17,7 @@ exports.getOrders = async (req, res, next) => {
 exports.getOrder = async (req, res, next) => {
     const { id } = req.params;
     try {
-        const order = await Order.findById(id);
+        const order = await Order.findById(id).populate('product')
         if (!order) throw createError(404)
         res.json({ success: true, order: order });
     }
