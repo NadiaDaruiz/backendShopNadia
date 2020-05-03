@@ -11,9 +11,9 @@ Route.get('/:name', getProduct);
 Route.post('/', postProduct);
 
 // PUT to update the price of the specific product
-Route.put('/:name', putProduct);
+Route.put('/:id', putProduct);
 
 //DELETE one of the products of the shop 
-Route.delete('/:name', deleteProduct);
+Route.delete('/:id', deleteProduct);
 
 module.exports = Route

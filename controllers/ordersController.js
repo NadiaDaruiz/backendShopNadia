@@ -59,9 +59,9 @@ exports.putOrder = async (req, res, next) => {
 exports.deleteOrder = async (req, res, next) => {
     const { id } = req.params;
     try {
-        const order = await Order.findByIdAndDelete(id)
-        if (!order) throw createError(404)
-        res.json({ success: true, order: order })
+        const deleteOrder = await Order.findByIdAndDelete(id)
+        if (!deleteOrder) throw createError(404)
+        res.json({ success: true, order: deleteOrder })
     }
     catch (err) {
         next(err)
