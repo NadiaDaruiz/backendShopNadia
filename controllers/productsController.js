@@ -1,17 +1,14 @@
 const createError = require('http-errors');
-const Product = require('../model/productSchema')
+const Product = require('../model/productSchema');
+
 
 // GET to see all the products on the shop
 exports.getProducts = async (req, res, next) => {
+
     try {
-        const value = req.header('test')
-        if (value === '123') {
-            const products = await Product.find()
-            res.json({ success: true, products: products })
-        }
-        else {
-            throw createError(404)
-        }
+        const products = await Product.find()
+        res.json({ success: true, products: products })
+
     }
     catch (err) {
         next(err)
@@ -20,9 +17,10 @@ exports.getProducts = async (req, res, next) => {
 
 // GET just one product of the shop
 exports.getProduct = async (req, res, next) => {
-    console.log(req.params.name)
+    const { id } = req.params
+
     try {
-        const product = await Product.find({ name: req.params.name })
+        const product = await Product.findById(id)
         if (!product) throw createError(404)
         res.json({ success: true, product: product });
     }
@@ -35,9 +33,9 @@ exports.getProduct = async (req, res, next) => {
 exports.postProduct = async (req, res, next) => {
 
     try {
-        const product = new Product(req.body)
-        await product.save()
-        res.json({ success: true, product: product })
+        const newProduct = new Product(req.body)
+        await newProduct.save()
+        res.json({ success: true, product: newProduct })
     }
     catch (err) {
         next(err)

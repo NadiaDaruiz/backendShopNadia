@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(setCors)
 
 // Port
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/fruit-shop', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -43,6 +43,5 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     res.json({ status: err.status, err: err.message })
 })
-
 
 app.listen(port, () => console.log('Listening to port:', port))

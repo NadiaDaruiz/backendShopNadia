@@ -1,6 +1,6 @@
 const createError = require('http-errors');
 const User = require('../model/userSchema');
-
+const jwt = require('jsonwebtoken');
 
 // GET to see all the users on the shop
 exports.getUsers = async (req, res, next) => {
@@ -19,7 +19,7 @@ exports.getUser = async (req, res, next) => {
     const { id } = req.params;
 
     try {
-        const user = await User.find(id)
+        const user = await User.findById(id)
         if (!user) throw createError(404)
         res.json({ success: true, user: user });
     }
@@ -34,7 +34,10 @@ exports.postUser = async (req, res, next) => {
 
     try {
         const user = new User(req.body)
+        const token = user.generateAuthToken()
         await user.save()
+
+        res.header('x-auth', token)
         res.json({ success: true, user: user })
     }
     catch (err) {
@@ -76,10 +79,15 @@ exports.loginUser = async (req, res, next) => {
 
     const { email, password } = req.body;
     try {
-        const user = await User.findOne({ email, password })
-        if (!user) throw createError(404)
-        res.header('test', 123);
-        res.json({ success: true, user: user })
+        const user = await User.findOne({ email })
+        const valid = await user.checkPassword(password)
+        if (!valid) throw createError(401)
+
+        let token = user.generateAuthToken()
+        const data = user.publicFields()
+
+        res.header('x-auth', token)
+        res.json({ success: true, user: data })
     }
     catch (err) {
         next(err)
