@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const uniqueValidator = require('mongoose-unique-validator');
 const jwt = require('jsonwebtoken');
-const { compare, encrypt } = require('../lib/encryption')
+const { compare, encrypt } = require('../lib/encryption');
+const env = require('../config/config');
 
 
 
@@ -44,7 +45,7 @@ UserSchema.virtual('fullName').get(function () {
 // creating the tokens and storing them in the array above 
 UserSchema.methods.generateAuthToken = function () {
     const user = this;
-    const token = jwt.sign({ _id: user._id }, 'thesecretkey').toString()
+    const token = jwt.sign({ _id: user._id }, env.jwt_key).toString()
 
     user.tokens.push({ token });
     return token
@@ -62,15 +63,15 @@ UserSchema.methods.publicFields = function () {
     return publicData
 };
 
+// in case the user change the password
 UserSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
 
     this.password = await encrypt(this.password);
+
     next()
 });
 
 
-// in case the user change the password
 UserSchema.methods.checkPassword = async function (password) {
 
     const user = this;
@@ -78,15 +79,15 @@ UserSchema.methods.checkPassword = async function (password) {
 };
 
 UserSchema.statics.findByToken = function (token) {
-    const user = this;
+    const User = this;
     let decoded;
     try {
-        decoded = jwt.verify(token, 'thesecretkey')
+        decoded = jwt.verify(token, env.jwt_key)
     }
     catch (e) {
         return
     }
-    return UserSchema.findOne({
+    return User.findOne({
         _id: decoded._id,
         'tokens.token': token
     }).select('-password -__v')

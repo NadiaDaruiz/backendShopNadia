@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const User = require('../model/userSchema');
 const jwt = require('jsonwebtoken');
+const { encrypt } = require('../lib/encryption')
 
 // GET to see all the users on the shop
 exports.getUsers = async (req, res, next) => {
@@ -46,11 +47,17 @@ exports.postUser = async (req, res, next) => {
 };
 
 // PUT to update the specific user info
+
+// Question: if I change pass the new pass doesnt get hash ! Why?
+
 exports.putUser = async (req, res, next) => {
     const { id } = req.params;
     const user = req.body;
 
     try {
+        const newPassword = await encrypt(user.password);
+        user.password = newPassword;
+
         const updateUser = await User.findByIdAndUpdate(id, user, { new: true })
         if (!updateUser) throw createError(404)
         res.json({ success: true, user: updateUser })

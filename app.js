@@ -1,9 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const createError = require('http-errors');
-const { setCors } = require('./middleware/chrome')
-
-
+const env = require('./config/config')
+const { setCors } = require('./middleware/chrome');
 
 // const db = require('./model/db');
 
@@ -20,10 +19,10 @@ app.use(express.json());
 app.use(setCors)
 
 // Port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4001;
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/fruit-shop', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(env.db, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.on('error', (err) => console.log(err))
 mongoose.connection.on('open', () => console.log('database connected'))
 
