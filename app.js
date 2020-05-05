@@ -6,7 +6,7 @@ const { setCors } = require('./middleware/chrome');
 
 // const db = require('./model/db');
 
-const indexRoute = require('./routes/productsRoute');
+const indexRoute = require('./routes/indexRoute');
 const productsRoute = require('./routes/productsRoute');
 const ordersRoute = require('./routes/ordersRoute');
 const usersRoute = require('./routes/usersRoute');
@@ -29,9 +29,9 @@ mongoose.connection.on('open', () => console.log('database connected'))
 
 //  ROUTES 
 app.use('/', indexRoute);
-app.use('/shop/products', productsRoute);
-app.use('/shop/orders', ordersRoute);
-app.use('/shop/users', usersRoute);
+app.use('/products', productsRoute);
+app.use('/orders', ordersRoute);
+app.use('/users', usersRoute);
 
 // ERROR HANDLER - this func goes at the end cause in the case non of the previous work
 app.use((req, res, next) => {

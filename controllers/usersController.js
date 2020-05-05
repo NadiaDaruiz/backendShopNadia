@@ -34,6 +34,7 @@ exports.postUser = async (req, res, next) => {
     console.log(req.body);
 
     try {
+
         const user = new User(req.body)
         const token = user.generateAuthToken()
         await user.save()
@@ -55,8 +56,10 @@ exports.putUser = async (req, res, next) => {
     const user = req.body;
 
     try {
-        const newPassword = await encrypt(user.password);
-        user.password = newPassword;
+        if (Object.keys(req.body).contains('password')) {
+            const newPassword = await encrypt(user.password);
+            user.password = newPassword;
+        }
 
         const updateUser = await User.findByIdAndUpdate(id, user, { new: true })
         if (!updateUser) throw createError(404)

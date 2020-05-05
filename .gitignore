@@ -1,3 +1,7 @@
-nodde_modules
+node_modules
+
 package-lock.json
+
 .env
+
+.now

@@ -1,5 +1,7 @@
 const Route = require('express').Router();
-const { indexRoute } = require('../controllers/indexController')
+const { indexController } = require('../controllers/indexController')
 
 
-Route.get('/shop', indexController);
+Route.get('/', indexController);
+
+module.exports = Route
