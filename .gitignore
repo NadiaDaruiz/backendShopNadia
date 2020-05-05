@@ -1,1 +1,3 @@
-nodde_modules
+node_modules/
+seed/
+package-lock.json
