@@ -1,0 +1,21 @@
+.container-sign-form{ 
+    background-color:rgba(235, 35, 45, 0.596);
+    border-radius: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.sign-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+    height: 80%;
+}
+.inline-container{
+    display: flex; 
+    justify-content: center;
+    width: 100%;
+}
+
+

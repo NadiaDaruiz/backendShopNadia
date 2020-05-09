@@ -1,13 +1,22 @@
-
 import React from 'react';
+import Login from './components/Login';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import SignUp from './components/SignUp';
+/*import Apples from './img/apples.jpeg';
+import Bananas from './img/bananas.jpg';
+import Plums from './img/plums.jpg';
+import Blueberries from './img/blueberries.jpg';
+import Strawberries from './img/strawberries.jpg';*/
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>My React App</h1>
+    <div className='box'>
+      <h1>The Little Fruit Shop</h1>
+      <Login />
+      <SignUp />
     </div>
   );
 }
-
 
 export default App;

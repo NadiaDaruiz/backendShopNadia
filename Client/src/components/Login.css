@@ -1,0 +1,23 @@
+.container-login-form {
+    background-color: rgba(235, 35, 45, 0.596);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    margin: auto;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+    margin-bottom: 15px;
+    height: 100%;
+}
+
+
+
+.footer-form {
+    margin: 15px;
+}
