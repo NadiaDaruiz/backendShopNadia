@@ -4,26 +4,36 @@
     padding: 0;
 }
 
-body {
+body { 
     background-image: url(./img/fruits-background-3.jpg);
     background-size: 100%;
     font-family: 'Josefin Slab', serif;  
     font-weight: 400; 
     font-size: 18px;
-
 }
+
+.container-form{ 
+    background-color:rgba(235, 35, 45, 0.596);
+    border-radius: 20px;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
 
 h1 {
     font-family: 'Fredericka the Great', cursive;
     color: black;
     text-align: center;
-    margin: 70px 0;
+    margin: 45px 0;
 }
 
 h2 {
     text-align: center;
     color: black;
     font-weight: 700;
-    font-family: 'Josefin Slab', serif;   
+}
+.footer-form {
+    margin: 15px;
+    text-align: center;
 }
 

@@ -15,19 +15,20 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
     function handleSubmit(e) {
         e.preventDefault();
     }
 
     return (
-        <div className='container-sign-form '>
+        <div className='container-form '>
             <Form onSubmit={handleSubmit} className='sign-form'>
                 <h2>Register</h2>
                 <p>Please complete this form and submit.</p>
                 <div className='inline-container'>
                     <FormGroup>
                         <Label>First Name</Label>
-                        <Input
+                        <Input className='input'
                             type='text'
                             placeholder='first name'
                             onChange={e => setFirstName(e.target.value)} required>
@@ -113,7 +114,7 @@ const SignUp = () => {
                 <Button color='danger' size='lg' block>
                     SUBMIT
                 </Button>
-                <p className='footer-form'>You already have an account? | Log in here!</p>
+                <p className='footer-form'>You already have an account? | Log in <a href='#'>here!</a></p>
             </Form>
         </div>
     )

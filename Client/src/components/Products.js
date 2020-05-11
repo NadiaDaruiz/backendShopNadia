@@ -1,46 +1,28 @@
-import React, { Component } from 'react';
-import { Button, CardBody, CardText, CardImg } from 'reactstrap';
+import React from 'react';
+import Fruit from './Fruit';
+
+import { CardDeck, Card } from 'reactstrap';
+import Apples from '../img/apples.jpeg';
+import Bananas from '../img/bananas.jpg';
+import Plums from '../img/plums.jpg';
+import Blueberries from '../img/blueberries.jpg';
+import Strawberries from '../img/strawberries.jpg';
 
 
-class Products extends Component {
-    state = {
-        qty: 0
-    }
+const Products = () => {
 
-    add = () =>
-        this.setState({
-            qty: this.state.qty + 1
-        })
+    return (
+        <div>
+            <h2>Our Fruit Selection</h2>
+            <CardDeck className='box'>
+                <Card outline color='danger' className='inbox'>
+                    <Fruit name={'Strawberries'} origin={'Germany'} price={1.99} picture={Strawberries} />
+                </Card>
+            </CardDeck>
 
-    less = () =>
-        this.setState({
-            qty: this.state.qty - 1
-        })
-
-    empty = () =>
-        this.setState({
-            qty: 0
-        })
-
-    render() {
-        return (
-            <div>
-                <CardBody>
-                    <CardImg src={this.props.picture} style={{ width: '185px', height: '185px' }} />
-                    <CardText>
-                        <h2>{this.props.name}</h2>
-                        <p>Origin: {this.props.origin}</p>
-                        <p>Qty: {this.state.qty}</p>
-                        <p>Price: $ {this.props.price}</p>
-                        <p>Total: $ {this.props.price * this.state.qty}</p>
-                    </CardText>
-                    <Button outline color='danger' onClick={this.add}>+1</Button>
-                    <Button outline color='danger' onClick={this.less} disabled={this.state.qty < 1}>-1</Button>
-                    <Button outline color='danger' onClick={this.empty}>Empty</Button>
-                </CardBody>
-            </div>
-        )
-    }
+        </div>
+    )
 }
+
 
 export default Products

@@ -18,10 +18,11 @@ const Login = () => {
     }
 
     return (
-        <div className='container-login-form'>
+
+        <div className='container-form'>
             <Form className='login-form' onSubmit={handleSubmit}>
                 <h2>Login</h2>
-                <FormGroup >
+                <FormGroup>
                     <Label>Email</Label>
                     <Input
                         type='email'
@@ -47,9 +48,10 @@ const Login = () => {
                     type='submit'
                 >LOG IN
                 </Button>
-                <p className='footer-form'>You don't have an account? | Register here!</p>
+                <p className='footer-form'>You don't have an account? | Register <a href='#'>here!</a></p>
             </Form>
         </div>
+
     )
 }
 
