@@ -23,7 +23,7 @@ const SignUp = () => {
 
     function preventRefresh(e) {
         e.preventDefault();
-        // reset(empty input fields is not working still)
+        // reset(empty input fields is not working)
         e.target.reset()
     }
 
