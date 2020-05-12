@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 import { Form, FormGroup, Input, Label } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './Login.css';
 
 
@@ -10,6 +10,7 @@ import './Login.css';
 const Login = () => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null)
+    const [status, setStatus] = useState(false)
 
 
     const preventRefresh = (e) => {
@@ -34,18 +35,9 @@ const Login = () => {
             const resp = await fetch('http://localhost:4001/users/login', log)
             const data = await resp.json()
             console.log(data);
-
-            // const redirect = {
-            //     method: 'GET',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'x-auth': data.token,
-            //         'mode': 'no-cors'
-            //     },
-            // }
-            // const res2 = await fetch('http://localhost:4001/products', redirect)
-            // const data2 = await res2.json()
-            // console.log(data2);
+            if (data.success) {
+                setStatus(true)
+            }
 
         }
     }
@@ -53,7 +45,6 @@ const Login = () => {
     return (
 
         <div className='base-container'>
-
             <Form className='login-form' onSubmit={preventRefresh}>
                 <h2>Log-in</h2>
                 <FormGroup>
@@ -85,7 +76,8 @@ const Login = () => {
                 <p className='footer-form'>You don't have an account? | Register <Link
                     to='/users'>here!</Link></p>
             </Form>
-
+            {/* the false part is not working. I wanna get redirected to users route/sign up */}
+            {status ? <Redirect to='/products' /> : <Link to='/' />}
         </div>
 
     )

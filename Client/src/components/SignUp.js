@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import './SignUp.css';
 
@@ -18,9 +18,12 @@ const SignUp = () => {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
 
+    const [status, setStatus] = useState(false)
+
 
     function preventRefresh(e) {
         e.preventDefault();
+        // reset(empty input fields is not working still)
         e.target.reset()
     }
 
@@ -61,6 +64,9 @@ const SignUp = () => {
             const resp = await fetch('http://localhost:4001/users', sign)
             const data = await resp.json();
             console.log('resp:', data);
+            if (data.success) {
+                setStatus(true)
+            }
         }
     }
 
@@ -174,6 +180,7 @@ const SignUp = () => {
                 </Button>
                 <p className='footer-form'>You already have an account? | Log in <Link to='/login'>here!</Link></p>
             </Form>
+            {status ? <Redirect to='/products' /> : <Link to='/' />}
         </div>
     )
 }

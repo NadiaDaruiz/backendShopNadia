@@ -40,8 +40,8 @@ class Fruit extends Component {
                         <p className='sm'>Total: $ {this.props.price * this.state.qty}</p>
                     </Card.Text>
 
-                    <Button variant='outline-danger' onClick={this.add}>+1</Button>
-                    <Button variant='outline-danger' onClick={this.less} disabled={this.state.qty < 1}>-1</Button>
+                    <Button variant='outline-danger' onClick={this.add}>+</Button>
+                    <Button variant='outline-danger' onClick={this.less} disabled={this.state.qty < 1}>-</Button>
                     <Button variant='outline-danger' onClick={this.empty}>Empty</Button>
                 </Card>
             </div>
