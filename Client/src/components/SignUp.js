@@ -4,30 +4,70 @@ import './SignUp.css';
 
 
 const SignUp = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [street, setStreet] = useState('');
-    const [houseNr, setHouseNr] = useState('');
-    const [zipCode, setZipCode] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [userName, setUserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState(null);
+    const [lastName, setLastName] = useState(null);
+    const [street, setStreet] = useState(null);
+    const [houseNr, setHouseNr] = useState(null);
+    const [zipCode, setZipCode] = useState(null);
+    const [city, setCity] = useState(null);
+    const [country, setCountry] = useState(null);
+    const [userName, setUserName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
 
 
-    function handleSubmit(e) {
+    function preventRefresh(e) {
         e.preventDefault();
+    }
+
+    const handleSubmit = async () => {
+        if (
+            firstName === null ||
+            lastName === null ||
+            street === null ||
+            houseNr === null ||
+            zipCode === null ||
+            city === null ||
+            country === null ||
+            userName === null ||
+            email === null ||
+            password === null
+        ) {
+            alert('Please fill all the fields')
+        } else {
+            const userData = {
+                firstName: firstName,
+                lastName: lastName,
+                street: street,
+                houseNr: houseNr,
+                zipCode: zipCode,
+                city: city,
+                country: country,
+                userName: userName,
+                email: email,
+                password: password
+            };
+            const sign = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            };
+            const resp = await fetch('http://localhost:4001/users', sign)
+            const data = await resp.json();
+            console.log('resp:', data);
+        }
     }
 
     return (
         <div className='container-form '>
-            <Form onSubmit={handleSubmit} className='sign-form'>
+            <Form onSubmit={preventRefresh} className='sign-form'>
                 <h2>Register</h2>
                 <p>Please complete this form and submit.</p>
                 <div className='inline-container'>
                     <FormGroup>
-                        <Label>First Name</Label>
+                        <Label style={{ 'font-weight': '600' }}>First Name</Label>
                         <Input className='input'
                             type='text'
                             placeholder='first name'
@@ -35,7 +75,7 @@ const SignUp = () => {
                         </Input>
                     </FormGroup>
                     <FormGroup >
-                        <Label>Last Name</Label>
+                        <Label style={{ 'font-weight': '600' }}>Last Name</Label>
                         <Input
                             type='text'
                             placeholder='last name'
@@ -45,7 +85,7 @@ const SignUp = () => {
                 </div>
                 <div className='inline-container'>
                     <FormGroup >
-                        <Label>Street</Label>
+                        <Label style={{ 'font-weight': '600' }}>Street</Label>
                         <Input
                             type='text'
                             placeholder='Street'
@@ -53,7 +93,7 @@ const SignUp = () => {
                         </Input>
                     </FormGroup>
                     <FormGroup >
-                        <Label>House Number</Label>
+                        <Label style={{ 'font-weight': '600' }}>House Number</Label>
                         <Input
                             type='number'
                             placeholder='House Number'
@@ -63,7 +103,7 @@ const SignUp = () => {
                 </div>
                 <div className='inline-container'>
                     <FormGroup >
-                        <Label>Zip Code</Label>
+                        <Label style={{ 'font-weight': '600' }}>Zip Code</Label>
                         <Input
                             type='number'
                             placeholder='Zip Code'
@@ -71,7 +111,7 @@ const SignUp = () => {
                         </Input>
                     </FormGroup>
                     <FormGroup >
-                        <Label>City</Label>
+                        <Label style={{ 'font-weight': '600' }}>City</Label>
                         <Input
                             type='text'
                             placeholder='City'
@@ -80,7 +120,7 @@ const SignUp = () => {
                     </FormGroup>
                 </div>
                 <FormGroup >
-                    <Label>Country</Label>
+                    <Label style={{ 'font-weight': '600' }}>Country</Label>
                     <Input
                         type='text'
                         placeholder='Country'
@@ -88,7 +128,7 @@ const SignUp = () => {
                     </Input>
                 </FormGroup>
                 <FormGroup >
-                    <Label>User Name</Label>
+                    <Label style={{ 'font-weight': '600' }}>User Name</Label>
                     <Input
                         type='name'
                         placeholder='User Name'
@@ -96,7 +136,7 @@ const SignUp = () => {
                     </Input>
                 </FormGroup>
                 <FormGroup >
-                    <Label>Email</Label>
+                    <Label style={{ 'font-weight': '600' }}>Email</Label>
                     <Input
                         type='email'
                         placeholder='email'
@@ -104,14 +144,18 @@ const SignUp = () => {
                     </Input>
                 </FormGroup>
                 <FormGroup >
-                    <Label>Password</Label>
+                    <Label style={{ 'font-weight': '600' }}>Password</Label>
                     <Input
                         type='Password'
                         placeholder='Password'
                         onChange={e => setPassword(e.target.value)} required>
                     </Input>
                 </FormGroup>
-                <Button color='danger' size='lg' block>
+                <Button
+                    onClick={() => { handleSubmit() }}
+                    color='danger'
+                    size='lg'
+                    block>
                     SUBMIT
                 </Button>
                 <p className='footer-form'>You already have an account? | Log in <a href='#'>here!</a></p>

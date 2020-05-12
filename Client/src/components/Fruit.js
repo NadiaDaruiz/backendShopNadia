@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Fruit.css';
 import { Button, CardBody, CardText, CardImg } from 'reactstrap';
 
 
@@ -27,7 +28,7 @@ class Fruit extends Component {
                 <CardBody>
                     <CardImg src={this.props.picture} style={{ width: '100px', height: '100px' }} />
                     <CardText>
-                        <h4>{this.props.name}</h4>
+                        <h5>{this.props.name}</h5>
                         <p>Origin: {this.props.origin}</p>
                         <p>Qty: {this.state.qty}</p>
                         <p>Price: $ {this.props.price}</p>

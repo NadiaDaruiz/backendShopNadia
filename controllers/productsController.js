@@ -4,6 +4,7 @@ const Product = require('../model/productSchema');
 
 // GET to see all the products on the shop
 exports.getProducts = async (req, res, next) => {
+    console.log(req.body);
 
     try {
         const products = await Product.find()

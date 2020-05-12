@@ -1,7 +1,8 @@
 import React from 'react';
 import Fruit from './Fruit';
-
+import './Products.css'
 import { CardDeck, Card } from 'reactstrap';
+
 import Apples from '../img/apples.jpeg';
 import Bananas from '../img/bananas.jpg';
 import Plums from '../img/plums.jpg';
@@ -12,10 +13,10 @@ import Strawberries from '../img/strawberries.jpg';
 const Products = () => {
 
     return (
-        <div>
+        <div className='container'>
             <h2>Our Fruit Selection</h2>
-            <CardDeck className='box'>
-                <Card outline color='danger' className='inbox'>
+            <CardDeck>
+                <Card className='card' outline color='danger' className='inbox'>
                     <Fruit name={'Strawberries'} origin={'Germany'} price={1.99} picture={Strawberries} />
                 </Card>
             </CardDeck>
@@ -23,6 +24,4 @@ const Products = () => {
         </div>
     )
 }
-
-
 export default Products

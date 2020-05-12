@@ -86,7 +86,7 @@ exports.deleteUser = async (req, res, next) => {
 };
 
 exports.loginUser = async (req, res, next) => {
-
+    console.log(req.body);
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email })
@@ -97,7 +97,8 @@ exports.loginUser = async (req, res, next) => {
         const data = user.publicFields()
 
         res.header('x-auth', token)
-        res.json({ success: true, user: data })
+        res.json({ success: true, user: data, token: token })
+
     }
     catch (err) {
         next(err)

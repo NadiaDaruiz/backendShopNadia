@@ -3,14 +3,17 @@
     width: 100%;
     max-width: 500px;
     padding: 15px;
-    margin: auto;
+    margin: 10px auto;
     height: 70%;
 }
 .inline-container{
     display: flex; 
-    justify-content: space-between;
-    flex: 
-    
+    justify-content: space-between
+}
+
+p {
+    color: black;
+    font-weight: 600;
 }
 
 

@@ -13,18 +13,10 @@ body {
 }
 
 .container-form{ 
-    background-color:rgba(235, 35, 45, 0.596);
+    background-color:rgba(235, 35, 45, 0.7);
     border-radius: 20px;
     max-width: 600px;
     margin: 10px auto;
-}
-
-
-h1 {
-    font-family: 'Fredericka the Great', cursive;
-    color: black;
-    text-align: center;
-    margin: 45px 0;
 }
 
 h2 {
@@ -32,6 +24,7 @@ h2 {
     color: black;
     font-weight: 700;
 }
+
 .footer-form {
     margin: 15px;
     text-align: center;
