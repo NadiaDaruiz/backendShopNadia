@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
-import { BrowserRouter, Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+
+import { Form, FormGroup, Input, Label } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import './Login.css';
 
 
@@ -50,40 +52,40 @@ const Login = () => {
 
     return (
 
-        <div className='container-form'>
-            <BrowserRouter>
-                <Form className='login-form' onSubmit={preventRefresh}>
-                    <h2>Log-in</h2>
-                    <FormGroup>
-                        <Label style={{ 'font-weight': '600' }}>Email</Label>
-                        <Input
-                            type='email'
-                            placeholder='email'
-                            onChange={e => setEmail(e.target.value)} required>
-                        </Input>
-                    </FormGroup>
+        <div className='base-container'>
 
-                    <FormGroup>
-                        <Label style={{ 'font-weight': '600' }}>Password</Label>
-                        <Input
-                            type='password'
-                            placeholder='password'
-                            onChange={e => setPassword(e.target.value)} required>
-                        </Input>
-                    </FormGroup>
+            <Form className='login-form' onSubmit={preventRefresh}>
+                <h2>Log-in</h2>
+                <FormGroup>
+                    <Label style={{ fontWeight: '600' }}>Email</Label>
+                    <Input
+                        type='email'
+                        placeholder='email'
+                        onChange={e => setEmail(e.target.value)} required>
+                    </Input>
+                </FormGroup>
 
-                    <Button
-                        onClick={() => { handleSubmit() }}
-                        size='lg'
-                        color='danger'
-                        block
-                        type='submit'>
-                        LOG IN
+                <FormGroup>
+                    <Label style={{ fontWeight: '600' }}>Password</Label>
+                    <Input
+                        type='password'
+                        placeholder='password'
+                        onChange={e => setPassword(e.target.value)} required>
+                    </Input>
+                </FormGroup>
+
+                <Button
+                    onClick={() => { handleSubmit() }}
+                    size='lg'
+                    variant='danger'
+                    block
+                    type='submit'>
+                    LOG IN
                 </Button>
-                    <p className='footer-form'>You don't have an account? | Register <Link
-                        to='../users'>here!</Link></p>
-                </Form>
-            </BrowserRouter>
+                <p className='footer-form'>You don't have an account? | Register <Link
+                    to='/users'>here!</Link></p>
+            </Form>
+
         </div>
 
     )

@@ -8,14 +8,14 @@ const NavBar = () => {
     return (
         <div>
             <header>
-                <Link style={{ 'text-decoration': 'none' }} to="/"><h1>The Little Fruit Shop</h1></Link>
                 <nav>
                     <ul>
-                        <li><Link style={{ 'text-decoration': 'none', 'color': 'black' }} to="/login">Log-in</Link></li>
-                        <li><Link style={{ 'text-decoration': 'none', 'color': 'black' }} to="/users">Sign-up</Link></li>
-                        <li><Link style={{ 'text-decoration': 'none', 'color': 'black' }} to='/products'>Products</Link></li>
+                        <li><Link style={{ textDecoration: 'none', color: 'blanchedalmond' }} to="/login">Log-in</Link></li>
+                        <li><Link style={{ textDecoration: 'none', color: 'blanchedalmond' }} to="/users">Sign-up</Link></li>
+                        <li><Link style={{ textDecoration: 'none', color: 'blanchedalmond' }} to='/products'>Products</Link></li>
                     </ul>
                 </nav>
+                <Link style={{ 'text-decoration': 'none' }} to="/"><h1>The Little Fruit Shop</h1></Link>
             </header>
         </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Fruit.css';
-import { Button, CardBody, CardText, CardImg } from 'reactstrap';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 
 class Fruit extends Component {
@@ -25,19 +26,24 @@ class Fruit extends Component {
     render() {
         return (
             <div>
-                <CardBody>
-                    <CardImg src={this.props.picture} style={{ width: '100px', height: '100px' }} />
-                    <CardText>
-                        <h5>{this.props.name}</h5>
-                        <p>Origin: {this.props.origin}</p>
-                        <p>Qty: {this.state.qty}</p>
-                        <p>Price: $ {this.props.price}</p>
-                        <p>Total: $ {this.props.price * this.state.qty}</p>
-                    </CardText>
-                    <Button outline color='danger' onClick={this.add}>+1</Button>
-                    <Button outline color='danger' onClick={this.less} disabled={this.state.qty < 1}>-1</Button>
-                    <Button outline color='danger' onClick={this.empty}>Empty</Button>
-                </CardBody>
+                <Card style={{ height: '20rem', width: '18rem' }}>
+                    <Card.Title>
+                        <h5 style={{ fontWeight: '600' }}>{this.props.name}</h5>
+                        <Card.Subtitle>
+                            <p className='sm'>Origin: {this.props.origin}</p>
+                        </Card.Subtitle>
+                    </Card.Title>
+                    <Card.Img src={this.props.picture} style={{ width: '90px', height: '90px' }} />
+                    <Card.Text>
+                        <p className='sm'>Qty: {this.state.qty}</p>
+                        <p className='sm'>Price: $ {this.props.price}</p>
+                        <p className='sm'>Total: $ {this.props.price * this.state.qty}</p>
+                    </Card.Text>
+
+                    <Button variant='outline-danger' onClick={this.add}>+1</Button>
+                    <Button variant='outline-danger' onClick={this.less} disabled={this.state.qty < 1}>-1</Button>
+                    <Button variant='outline-danger' onClick={this.empty}>Empty</Button>
+                </Card>
             </div>
         )
     }

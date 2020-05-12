@@ -8,15 +8,18 @@ body {
     background-image: url(./img/fruits-background-3.jpg);
     background-size: 100%;
     font-family: 'Josefin Slab', serif;  
-    font-weight: 400; 
-    font-size: 18px;
 }
 
-.container-form{ 
+body p {
+    font-weight: 400; 
+    font-size: 1.4em; 
+}
+
+.base-container{ 
     background-color:rgba(235, 35, 45, 0.7);
     border-radius: 20px;
     max-width: 600px;
-    margin: 10px auto;
+    margin: 20px auto;
 }
 
 h2 {

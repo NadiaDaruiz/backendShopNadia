@@ -1,21 +1,26 @@
 header {
-    margin-top: 40px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 80px;
 }
 
 h1 {
-    font-family: 'Fredericka the Great', cursive;
-    color: black;
-    font-weight: 500;
-    text-align: center;
-    margin: auto;
-}
-
-nav, h1 { 
     background-color:rgba(235, 35, 45, 0.7);
     border-radius: 20px;
+    font-family: 'Fredericka the Great', cursive;
+    color: blanchedalmond;
+    font-weight: 500;
+    /* font-size: 5rem; */
+    text-align: center;
+    margin: auto;
     max-width: 600px;
-    margin: 30px auto;
+}
+
+nav { 
+    background-color:rgba(235, 35, 45, 0.7);
+    border-radius: 20px;
+    max-width: 90%;
+    margin: 20px auto;
+    color: blanchedalmond;
 }
 
 ul {
@@ -28,6 +33,7 @@ ul {
 
 li {
     font-family: 'Fredericka the Great', cursive;
-    padding: 0 10px;
-    font-size: 22px;
+    padding: 0 40px;
+    font-size: 2em;
+
 }

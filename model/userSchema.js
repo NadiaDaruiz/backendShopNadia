@@ -11,8 +11,9 @@ const UserSchema = new Schema({
 
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    phone: { type: Number, required: false },
     address: { type: String, required: true },
+    houseNr: { type: Number, required: true },
+    zipCode: { type: Number, required: true },
     city: { type: String, required: true },
     country: { type: String, required: true },
     userName: { type: String, required: true, unique: true },

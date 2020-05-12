@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import Button from 'react-bootstrap/Button';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
 import './SignUp.css';
 
 
@@ -18,6 +21,7 @@ const SignUp = () => {
 
     function preventRefresh(e) {
         e.preventDefault();
+        e.target.reset()
     }
 
     const handleSubmit = async () => {
@@ -61,22 +65,24 @@ const SignUp = () => {
     }
 
     return (
-        <div className='container-form '>
+        <div className='base-container'>
             <Form onSubmit={preventRefresh} className='sign-form'>
                 <h2>Register</h2>
                 <p>Please complete this form and submit.</p>
                 <div className='inline-container'>
                     <FormGroup>
-                        <Label style={{ 'font-weight': '600' }}>First Name</Label>
-                        <Input className='input'
+                        <Label style={{ fontWeight: '600' }}>First Name</Label>
+                        <Input
+                            value={firstName}
                             type='text'
                             placeholder='first name'
                             onChange={e => setFirstName(e.target.value)} required>
                         </Input>
                     </FormGroup>
                     <FormGroup >
-                        <Label style={{ 'font-weight': '600' }}>Last Name</Label>
+                        <Label style={{ fontWeight: '600' }}>Last Name</Label>
                         <Input
+                            value={lastName}
                             type='text'
                             placeholder='last name'
                             onChange={e => setLastName(e.target.value)} required>
@@ -85,16 +91,18 @@ const SignUp = () => {
                 </div>
                 <div className='inline-container'>
                     <FormGroup >
-                        <Label style={{ 'font-weight': '600' }}>Street</Label>
+                        <Label style={{ fontWeight: '600' }}>Street</Label>
                         <Input
+                            value={street}
                             type='text'
                             placeholder='Street'
                             onChange={e => setStreet(e.target.value)} required>
                         </Input>
                     </FormGroup>
                     <FormGroup >
-                        <Label style={{ 'font-weight': '600' }}>House Number</Label>
+                        <Label style={{ fontWeight: '600' }}>House Number</Label>
                         <Input
+                            value={houseNr}
                             type='number'
                             placeholder='House Number'
                             onChange={e => setHouseNr(e.target.value)} required>
@@ -103,16 +111,18 @@ const SignUp = () => {
                 </div>
                 <div className='inline-container'>
                     <FormGroup >
-                        <Label style={{ 'font-weight': '600' }}>Zip Code</Label>
+                        <Label style={{ fontWeight: '600' }}>Zip Code</Label>
                         <Input
+                            value={zipCode}
                             type='number'
                             placeholder='Zip Code'
                             onChange={e => setZipCode(e.target.value)} required>
                         </Input>
                     </FormGroup>
                     <FormGroup >
-                        <Label style={{ 'font-weight': '600' }}>City</Label>
+                        <Label style={{ fontWeight: '600' }}>City</Label>
                         <Input
+                            value={city}
                             type='text'
                             placeholder='City'
                             onChange={e => setCity(e.target.value)} required>
@@ -120,32 +130,36 @@ const SignUp = () => {
                     </FormGroup>
                 </div>
                 <FormGroup >
-                    <Label style={{ 'font-weight': '600' }}>Country</Label>
+                    <Label style={{ fontWeight: '600' }}>Country</Label>
                     <Input
+                        value={country}
                         type='text'
                         placeholder='Country'
                         onChange={e => setCountry(e.target.value)} required>
                     </Input>
                 </FormGroup>
                 <FormGroup >
-                    <Label style={{ 'font-weight': '600' }}>User Name</Label>
+                    <Label style={{ fontWeight: '600' }}>User Name</Label>
                     <Input
+                        value={userName}
                         type='name'
                         placeholder='User Name'
                         onChange={e => setUserName(e.target.value)} required>
                     </Input>
                 </FormGroup>
                 <FormGroup >
-                    <Label style={{ 'font-weight': '600' }}>Email</Label>
+                    <Label style={{ fontWeight: '600' }}>Email</Label>
                     <Input
+                        value={email}
                         type='email'
                         placeholder='email'
                         onChange={e => setEmail(e.target.value)} required>
                     </Input>
                 </FormGroup>
                 <FormGroup >
-                    <Label style={{ 'font-weight': '600' }}>Password</Label>
+                    <Label style={{ fontWeight: '600' }}>Password</Label>
                     <Input
+                        value={password}
                         type='Password'
                         placeholder='Password'
                         onChange={e => setPassword(e.target.value)} required>
@@ -153,12 +167,12 @@ const SignUp = () => {
                 </FormGroup>
                 <Button
                     onClick={() => { handleSubmit() }}
-                    color='danger'
+                    variant='danger'
                     size='lg'
                     block>
                     SUBMIT
                 </Button>
-                <p className='footer-form'>You already have an account? | Log in <a href='#'>here!</a></p>
+                <p className='footer-form'>You already have an account? | Log in <Link to='/login'>here!</Link></p>
             </Form>
         </div>
     )
