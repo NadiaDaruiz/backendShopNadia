@@ -45,6 +45,8 @@ const Login = () => {
     return (
 
         <div className='base-container'>
+            {/* the false part is not working. I wanna get redirected to users route/sign up */}
+            {status ? <Redirect to='/products' /> : <Link to='/' />}
             <Form className='login-form' onSubmit={preventRefresh}>
                 <h2>Log-in</h2>
                 <FormGroup>
@@ -76,13 +78,8 @@ const Login = () => {
                 <p className='footer-form'>You don't have an account? | Register <Link
                     to='/users'>here!</Link></p>
             </Form>
-            {/* the false part is not working. I wanna get redirected to users route/sign up */}
-            {status ? <Redirect to='/products' /> : <Link to='/' />}
         </div>
-
     )
 }
-
-
 
 export default Login;

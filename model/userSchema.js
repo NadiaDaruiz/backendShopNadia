@@ -11,7 +11,7 @@ const UserSchema = new Schema({
 
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    address: { type: String, required: true },
+    street: { type: String, required: true },
     houseNr: { type: Number, required: true },
     zipCode: { type: Number, required: true },
     city: { type: String, required: true },
@@ -21,7 +21,7 @@ const UserSchema = new Schema({
     role: {
         type: String,
         enum: ['Admin', 'User'],
-        required: true
+        required: false
     },
     tokens: [{ token: { type: String, require: true } }],
     password: { type: String, required: true },

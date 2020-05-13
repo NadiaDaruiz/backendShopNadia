@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Fruit.css';
+import './Order.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
@@ -25,7 +25,7 @@ class Fruit extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container-fruit'>
                 <Card style={{ height: '20rem', width: '18rem' }}>
                     <Card.Title>
                         <h5 style={{ fontWeight: '600' }}>{this.props.name}</h5>

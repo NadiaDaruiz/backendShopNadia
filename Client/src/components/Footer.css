@@ -1,0 +1,20 @@
+body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  flex: 1 0 auto;
+  height: 20px;
+  padding: 10px;
+}
+
+.footer {
+  flex-shrink: 0;
+  text-align: center
+}
