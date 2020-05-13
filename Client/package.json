@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "des",
   "homepage": ".",
-  "proxy": "http://localhost:4001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
