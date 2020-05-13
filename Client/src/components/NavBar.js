@@ -10,7 +10,7 @@ const NavBar = () => {
             <header>
                 <nav>
                     <ul>
-                        <li><Link style={{ textDecoration: 'none', color: 'blanchedalmond' }} to="/login">Log-in</Link></li>
+                        <li><Link style={{ textDecoration: 'none', color: 'blanchedalmond' }} to="/users/login">Log-in</Link></li>
                         <li><Link style={{ textDecoration: 'none', color: 'blanchedalmond' }} to="/users">Sign-up</Link></li>
                         <li><Link style={{ textDecoration: 'none', color: 'blanchedalmond' }} to='/products'>Products</Link></li>
                     </ul>
