@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently 'nodemon app.js' 'cd Client && npm start'",
+    "start": "node app.js",
+    "server": "concurrently 'nodemon app.js' 'cd Client && npm start'",
     "dev": "nodemon app.js",
-    "build": "node build --output public"
+    "heroku-postbuild": "cd Client && npm install && npm run build"
   },
   "author": "Nadia Daruiz",
   "license": "ISC",

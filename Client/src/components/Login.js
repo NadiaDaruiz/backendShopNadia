@@ -32,7 +32,7 @@ const Login = () => {
                 },
                 body: JSON.stringify(userData)
             };
-            const resp = await fetch('http://localhost:4001/users/login', log)
+            const resp = await fetch('/users/login', log)
             const data = await resp.json()
             console.log(data);
             if (data.success) {

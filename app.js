@@ -17,6 +17,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(setCors)
+app.use(express.static('Client/build'))
 
 // Port
 const port = process.env.PORT || 4001;

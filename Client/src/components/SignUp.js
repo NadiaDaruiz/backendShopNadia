@@ -61,7 +61,7 @@ const SignUp = () => {
                 },
                 body: JSON.stringify(userData)
             };
-            const resp = await fetch('http://localhost:4001/users', sign)
+            const resp = await fetch('/users', sign)
             const data = await resp.json();
             console.log('resp:', data);
             if (data.success) {
