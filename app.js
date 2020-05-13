@@ -1,63 +1,47 @@
 const express = require('express');
-const Joi = require('joi');
-const Shop = require('./database');
+const mongoose = require('mongoose');
+const createError = require('http-errors');
+const env = require('./config/config')
+const { setCors } = require('./middleware/chrome');
+
+// const db = require('./model/db');
+
+const indexRoute = require('./routes/indexRoute');
+const productsRoute = require('./routes/productsRoute');
+const ordersRoute = require('./routes/ordersRoute');
+const usersRoute = require('./routes/usersRoute');
 
 // Server
 const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(setCors)
+app.use(express.static('Client/build'))
 
 // Port
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4001;
+
+
+mongoose.connect(env.db, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connection.on('error', (err) => console.log(err))
+mongoose.connection.on('open', () => console.log('database connected'))
+
 
 //  ROUTES 
-// GET all the fruits in the shop
-app.get('/shop', (req, res) => {
-    res.send(Shop)
-});
+app.use('/', indexRoute);
+app.use('/products', productsRoute);
+app.use('/orders', ordersRoute);
+app.use('/users', usersRoute);
 
+// ERROR HANDLER - this func goes at the end cause in the case non of the previous work
+app.use((req, res, next) => {
+    next(createError(404))
+})
 
-// GET just one fruit in the shop
-app.get('/shop/:name', (req, res) => {
-    console.log(req.params.name)
-    let selectedFruit = Shop.find(f => f.name == req.params.name)
-    res.send(selectedFruit);
-});
-
-// POST to update the shop with a new fruit
-// works but does not update the database file (shop) locally 
-app.post('/shop', (req, res) => {
-    const newFruit = {
-        name: req.body.name,
-        origin: req.body.origin,
-        price: req.body.price,
-        soldBy: req.body.soldBy,
-        qty: req.body.qty
-    };
-
-    Shop.push(newFruit);
-    res.send(Shop)
-    // res.send(newFruit);
-});
-
-// PUT to update the price of the specific fruit
-app.put('/shop/:name', (req, res) => {
-    let updateFruit = Shop.find(f => f.name == req.params.name)
-    updateFruit.price = req.body.price;
-    res.send(Shop)
-    // res.send(updateFruit)
-});
-
-//DELETE one of the fruits of the shop
-app.delete('/shop/:name', (req, res) => {
-    let removeFruit = Shop.find(f => f.name == req.params.name);
-
-    const index = Shop.indexOf(removeFruit);
-    Shop.splice(index, 1);
-
-    res.send(Shop)
-    // res,send(removeFruit)
+// UNIVERSAL ERROR CATCHER - this func is good to catch any error from any func
+app.use((err, req, res, next) => {
+    res.json({ status: err.status, err: err.message })
 })
 
 app.listen(port, () => console.log('Listening to port:', port))

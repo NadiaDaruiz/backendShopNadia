@@ -1,0 +1,19 @@
+
+.sign-form {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    height: 70%;
+}
+.inline-container{
+    display: flex; 
+    justify-content: space-between
+}
+
+p {
+    color: black;
+}
+
+
+
+

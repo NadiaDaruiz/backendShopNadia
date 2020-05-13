@@ -1,0 +1,16 @@
+
+
+.products-container {
+    background-color:rgba(235, 35, 45, 0.7);
+    border-radius: 20px;
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 20px
+}
+
+.card {
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+}
+
