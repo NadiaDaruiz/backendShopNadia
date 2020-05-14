@@ -20,7 +20,7 @@ const UserSchema = new Schema({
     email: { type: String, required: true, unique: true },
     role: {
         type: String,
-        enum: ['Admin', 'User'],
+        default: 'User',
         required: true
     },
     tokens: [{ token: { type: String, require: true } }],
