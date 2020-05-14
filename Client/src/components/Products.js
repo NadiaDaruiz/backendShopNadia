@@ -21,6 +21,7 @@ const Products = () => {
                 <Order name={'Plums'} origin={'USA'} price={3} picture={Plums} />
                 <Order name={'Bananas'} origin={'Colombia'} price={1} picture={Bananas} />
                 <Order name={'Apples'} origin={'Argentina'} price={2.99} picture={Apples} />
+                <Order name={'Raspberries'} origin={'Greece'} price={1.99} picture={Raspberries} />
 
             </CardColumns>
 

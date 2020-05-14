@@ -178,7 +178,7 @@ const SignUp = () => {
                     block>
                     SUBMIT
                 </Button>
-                <p className='footer-form'>You already have an account? | Log in <Link to='/login'>here!</Link></p>
+                <p className='footer-form'>You already have an account? | Log in <Link to='/users/login'>here!</Link></p>
             </Form>
             {status ? <Redirect to='/products' /> : <Link to='/' />}
         </div>
