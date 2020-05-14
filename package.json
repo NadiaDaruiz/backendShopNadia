@@ -1,6 +1,9 @@
 {
   "name": "backend_shop_nadia",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.16.0"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
