@@ -1,3 +1,4 @@
+#Fruit Shop - online store
 A small app to put front-end and back-end together. 
 For this cute little Fruit Shop I used:
 
